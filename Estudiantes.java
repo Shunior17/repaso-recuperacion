@@ -56,7 +56,7 @@ public class Estudiantes {//definimos una clase publica estudiantes
             System.out.println("Ingrese el apellido del estudiante " + (i + 1) + ": ");
             String apellido = sc.nextLine();
 
-            System.out.println("Ingrese la calificacion del estudiante " + (i + 1) + ": ");
+            System.out.println("Ingrese la calificacion entre el 1 al 10 del estudiante " + (i + 1) + ": ");
             int calificacion = Integer.parseInt(sc.nextLine());//consumir caracter de nueva linea
 
             Estudiantes estudiante = new Estudiantes(nombre, apellido, calificacion);//Creamos un objeto con los atributos dados con anterioridad
@@ -70,5 +70,47 @@ public class Estudiantes {//definimos una clase publica estudiantes
         System.out.println("Nombre: "+estudiante.nombre+" "+estudiante.apellido+"\n"+//Presentamos por pantalla todos los objetos del array
         "Calificacion: "+estudiante.calificacion);
     }
+    }
+    public static void listarEstudiantesNotas() {
+        System.out.println("Lista de estudiantes segun sus notas: ");
+        int contS=0,contA=0,contB=0,contC=0,contF=0,tramposo=0;
+        for (Estudiantes estudiante:listaEstudiantes) {//para acabar el ciclo no tiene que haber mas objetos en el array
+            String nombre=estudiante.nombre;
+            String apellido=estudiante.apellido;
+            int calificacion=estudiante.calificacion;
+            if (calificacion==10) {
+                System.out.println("Sobresaliente "+nombre+" "+apellido+"\n" +
+                        "Calificacion: "+calificacion);
+                contS++;
+            }else if (calificacion<=9&&calificacion>=8){
+                System.out.println("Satisfactorio "+nombre+" "+apellido+"\n" +
+                        "Calificacion: "+calificacion);
+                contA++;
+            }else if (calificacion<=7&&calificacion>=6){
+                System.out.println("Bueno "+nombre+" "+apellido+"\n" +
+                        "Calificacion: "+calificacion);
+                contB++;
+            }else if (calificacion<=5&&calificacion>=4){
+                System.out.println("Deficiente "+nombre+" "+apellido+"\n" +
+                        "Calificacion: "+calificacion);
+                contC++;
+            }else if (calificacion<=3&&calificacion>=1){
+                System.out.println("Reprobado "+nombre+" "+apellido+"\n" +
+                        "Calificacion: "+calificacion);
+                contF++;
+            }else {
+                System.out.println("Nota no valida"+nombre+" "+apellido);
+                tramposo++;
+            }
+
+        }
+
+        System.out.println("Total de notas\n" +
+                "Sobresalientes "+contS+"\n" +
+                "Satisfactorios "+contA+"\n" +
+                "Buenos "+contB+"\n" +
+                "Deficientes "+contC+"\n" +
+                "Reprobados "+contF+"\n" +
+                "Trampas detectadas "+tramposo);
     }
 }
